@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import Combine
 
 protocol RepositoryListInteractorInterface: AnyObject {
+    func fetchRepos(queryItems: [URLQueryItem]) -> AnyPublisher<SearchResult, Error>
 }
 
 final class RepositoryListInteractor: RepositoryListInteractorInterface {
+    func fetchRepos(queryItems: [URLQueryItem]) -> AnyPublisher<SearchResult, Error> {
+        return GitAPIClient().getRepos(queryItems: queryItems)
+    }
 }

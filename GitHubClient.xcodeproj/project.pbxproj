@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1450D3C92709D4F00010E17C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1450D3C82709D4F00010E17C /* SearchResult.swift */; };
+		1450D3CB2709D6A10010E17C /* GitAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1450D3CA2709D6A10010E17C /* GitAPIClient.swift */; };
 		14CF43A4270984DA004BD07F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF43A3270984DA004BD07F /* AppDelegate.swift */; };
 		14CF43A6270984DA004BD07F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF43A5270984DA004BD07F /* SceneDelegate.swift */; };
 		14CF43AD270984DD004BD07F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CF43AC270984DD004BD07F /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1450D3C82709D4F00010E17C /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		1450D3CA2709D6A10010E17C /* GitAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAPIClient.swift; sourceTree = "<group>"; };
 		14CF43A0270984DA004BD07F /* GitHubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CF43A3270984DA004BD07F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14CF43A5270984DA004BD07F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1450D3CC2709E17E0010E17C /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				1450D3CA2709D6A10010E17C /* GitAPIClient.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
 		14CF4397270984DA004BD07F = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +121,7 @@
 			children = (
 				14CF43D327098998004BD07F /* Modules */,
 				14CF43E427098F81004BD07F /* Entities */,
+				1450D3CC2709E17E0010E17C /* APIClient */,
 				14CF43E527098F8A004BD07F /* Utilities */,
 				14CF43A3270984DA004BD07F /* AppDelegate.swift */,
 				14CF43A5270984DA004BD07F /* SceneDelegate.swift */,
@@ -185,6 +198,7 @@
 		14CF43E427098F81004BD07F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				1450D3C82709D4F00010E17C /* SearchResult.swift */,
 				14CF43E627099E5C004BD07F /* Repo.swift */,
 			);
 			path = Entities;
@@ -329,6 +343,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CF43E727099E5C004BD07F /* Repo.swift in Sources */,
+				1450D3C92709D4F00010E17C /* SearchResult.swift in Sources */,
+				1450D3CB2709D6A10010E17C /* GitAPIClient.swift in Sources */,
 				14CF43E127098B0E004BD07F /* RepositoryListViewController.swift in Sources */,
 				14CF43DA27098A0A004BD07F /* RepositoryListPresenter.swift in Sources */,
 				14CF43A4270984DA004BD07F /* AppDelegate.swift in Sources */,
