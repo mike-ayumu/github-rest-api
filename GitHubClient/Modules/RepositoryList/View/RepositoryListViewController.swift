@@ -35,10 +35,12 @@ final class RepositoryListViewController: UIViewController {
 // MARK: - RepositoryListViewInterface
 extension RepositoryListViewController: RepositoryListViewInterface {
     func tableReloadData() {
+        self.stopIndicator()
         tableView.reloadData()
     }
     
     func showErrorMessage(message: String) {
+        self.stopIndicator()
         let alert: UIAlertController = UIAlertController(title: "エラー", message:  message, preferredStyle:  UIAlertController.Style.alert)
         let continueAction: UIAlertAction = UIAlertAction(title: "完了", style: UIAlertAction.Style.default, handler: nil)
         
@@ -53,6 +55,7 @@ extension RepositoryListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         guard let searchText = searchBar.text else { return }
+        self.startIndicator()
         presenter.onSearchButtonTapped(query: searchText)
     }
     
