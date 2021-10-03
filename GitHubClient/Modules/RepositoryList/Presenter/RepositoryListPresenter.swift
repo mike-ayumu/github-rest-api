@@ -11,6 +11,7 @@ import Combine
 protocol RepositoryListPresenterInterface: AnyObject {
     var repos: [Repo] { get }
     func onSearchButtonTapped(query: String)
+    func onRepositoryListCellTapped(url: String)
 }
 
 final class RepositoryListPresenter {
@@ -34,6 +35,10 @@ final class RepositoryListPresenter {
 extension RepositoryListPresenter: RepositoryListPresenterInterface {
     func onSearchButtonTapped(query: String) {
         loadRepository(query: query)
+    }
+    
+    func onRepositoryListCellTapped(url: String) {
+        router.openURLBySafari(url: url)
     }
     
     func loadRepository(query: String) {

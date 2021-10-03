@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 protocol RepositoryListViewInterface: AnyObject {
     func tableReloadData()
@@ -101,8 +100,6 @@ extension RepositoryListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension RepositoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let htmlUrl = URL(string: presenter.repos[indexPath.row].htmlUrl) else {return}
-        let safari = SFSafariViewController(url: htmlUrl)
-        present(safari, animated: true, completion: nil)
+        presenter.onRepositoryListCellTapped(url: presenter.repos[indexPath.row].htmlUrl)
     }
 }
