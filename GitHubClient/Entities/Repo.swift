@@ -10,4 +10,11 @@ import Foundation
 struct Repo: Codable {
     var name: String
     var description: String?
+    var htmlUrl: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case description
+        case htmlUrl = "html_url"
+    }
 }

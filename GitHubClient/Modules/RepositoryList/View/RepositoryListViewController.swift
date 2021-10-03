@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol RepositoryListViewInterface: AnyObject {
     func tableReloadData()
@@ -84,8 +85,8 @@ extension RepositoryListViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension RepositoryListViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension RepositoryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.repos.count
     }
@@ -94,5 +95,14 @@ extension RepositoryListViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as! RepositoryRowTableViewCell
         cell.cellSetUp(repo: presenter.repos[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension RepositoryListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let htmlUrl = URL(string: presenter.repos[indexPath.row].htmlUrl) else {return}
+        let safari = SFSafariViewController(url: htmlUrl)
+        present(safari, animated: true, completion: nil)
     }
 }
