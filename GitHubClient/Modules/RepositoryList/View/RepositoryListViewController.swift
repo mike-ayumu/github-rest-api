@@ -13,6 +13,7 @@ protocol RepositoryListViewInterface: AnyObject {
 }
 
 final class RepositoryListViewController: UIViewController {
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: RepositoryListPresenterInterface!
@@ -20,12 +21,14 @@ final class RepositoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "RepositoryRowTableViewCell", bundle: nil), forCellReuseIdentifier: "RepositoryCell")
         
-        presenter.onViewDidLoad()
+        // キーボード終了バーとボタンを表示
+        showKeyboardCloseBar()
     }
 }
 
@@ -37,15 +40,39 @@ extension RepositoryListViewController: RepositoryListViewInterface {
     
     func showErrorMessage(message: String) {
         let alert: UIAlertController = UIAlertController(title: "エラー", message:  message, preferredStyle:  UIAlertController.Style.alert)
-        
-        // 再読み込み処理
-        let continueAction: UIAlertAction = UIAlertAction(title: "再読み込み", style: UIAlertAction.Style.default, handler:{
-            (action: UIAlertAction!) -> Void in
-            self.presenter.onRetryButtonTapped()
-        })
+        let continueAction: UIAlertAction = UIAlertAction(title: "完了", style: UIAlertAction.Style.default, handler: nil)
         
         alert.addAction(continueAction)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension RepositoryListViewController: UISearchBarDelegate {
+    // 検索実行時
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchText = searchBar.text else { return }
+        presenter.onSearchButtonTapped(query: searchText)
+    }
+    
+    // キーボードクローズバー設置
+    func showKeyboardCloseBar() {
+        let keyboardCloseBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        keyboardCloseBar.barStyle = UIBarStyle.default
+        keyboardCloseBar.sizeToFit()
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+
+        // 閉じるボタン押下時処理
+        let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(keyboardCloseButtonTapped))
+
+        keyboardCloseBar.items = [spacer, commitButton]
+        searchBar.inputAccessoryView = keyboardCloseBar
+    }
+    
+    // キーボード終了処理
+    @objc func keyboardCloseButtonTapped(){
+        searchBar.endEditing(true)
     }
 }
 

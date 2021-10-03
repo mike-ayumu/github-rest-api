@@ -10,8 +10,7 @@ import Combine
 
 protocol RepositoryListPresenterInterface: AnyObject {
     var repos: [Repo] { get }
-    func onViewDidLoad()
-    func onRetryButtonTapped()
+    func onSearchButtonTapped(query: String)
 }
 
 final class RepositoryListPresenter {
@@ -33,16 +32,13 @@ final class RepositoryListPresenter {
 }
 
 extension RepositoryListPresenter: RepositoryListPresenterInterface {
-    func onRetryButtonTapped() {
-        loadRepository()
-    }
-    func onViewDidLoad() {
-        loadRepository()
+    func onSearchButtonTapped(query: String) {
+        loadRepository(query: query)
     }
     
-    func loadRepository() {
+    func loadRepository(query: String) {
         let queryItems = [
-            URLQueryItem(name: "q", value: "swift"),
+            URLQueryItem(name: "q", value: query),
         ]
         interactor.fetchRepos(queryItems: queryItems)
             .receive(on: DispatchQueue.main)
