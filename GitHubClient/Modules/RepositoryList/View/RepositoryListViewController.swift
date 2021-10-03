@@ -13,6 +13,7 @@ protocol RepositoryListViewInterface: AnyObject {
 }
 
 final class RepositoryListViewController: UIViewController {
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +30,9 @@ final class RepositoryListViewController: UIViewController {
         
         // キーボード終了バーとボタンを表示
         showKeyboardCloseBar()
+        
+        // タイトル設定
+        self.navigationBar.topItem?.title = ""
     }
 }
 
@@ -56,6 +60,7 @@ extension RepositoryListViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         guard let searchText = searchBar.text else { return }
         self.startIndicator()
+        self.navigationBar.topItem?.title = searchText
         presenter.onSearchButtonTapped(query: searchText)
     }
     

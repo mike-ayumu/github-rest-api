@@ -18,27 +18,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kfA-Zk-1hI">
-                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NIP-k8-INR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsr-jX-oOV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="Title" id="A7q-Cg-cVA"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kfA-Zk-1hI" firstAttribute="top" secondItem="NIP-k8-INR" secondAttribute="bottom" id="0jN-dA-3mS"/>
+                            <constraint firstItem="NIP-k8-INR" firstAttribute="top" secondItem="gsr-jX-oOV" secondAttribute="bottom" id="9Jy-8F-Fc1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="kfA-Zk-1hI" secondAttribute="bottom" id="CTv-H8-L7d"/>
                             <constraint firstItem="kfA-Zk-1hI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="W8j-Y5-CxS"/>
                             <constraint firstItem="NIP-k8-INR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ymc-o6-5Ts"/>
-                            <constraint firstItem="NIP-k8-INR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="kPg-S4-4Sl"/>
+                            <constraint firstItem="gsr-jX-oOV" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ZEZ-kw-6us"/>
+                            <constraint firstItem="gsr-jX-oOV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fo5-lW-Ogd"/>
+                            <constraint firstItem="gsr-jX-oOV" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="oxa-R7-Rci"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kfA-Zk-1hI" secondAttribute="trailing" id="v7R-wt-U24"/>
                             <constraint firstItem="NIP-k8-INR" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="xuA-cc-ffR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navigationBar" destination="gsr-jX-oOV" id="XPa-8Q-lZJ"/>
                         <outlet property="searchBar" destination="NIP-k8-INR" id="3IJ-Wf-B6n"/>
                         <outlet property="tableView" destination="kfA-Zk-1hI" id="59O-ID-1ti"/>
                     </connections>
